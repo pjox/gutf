@@ -27,9 +27,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r := charmap.Windows1254.NewDecoder().Reader(f)
+	r := charmap.ISO8859_1.NewDecoder().Reader(f)
 
-	io.Copy(out, r)
+	buf := make([]byte, 1048576)
+
+	io.CopyBuffer(out, r, buf)
 
 	out.Close()
 	f.Close()
