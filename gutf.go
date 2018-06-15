@@ -34,7 +34,7 @@ func main() {
 
 	r := charmap.ISO8859_1.NewDecoder().Reader(in)
 
-	buf := make([]byte, 1048576)
+	buf := make([]byte, 1<<20)
 
 	io.CopyBuffer(out, r, buf)
 
