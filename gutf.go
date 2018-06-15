@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"log"
@@ -21,18 +22,23 @@ func main() {
 		log.Fatal(err)
 	}
 
-	out, err := os.Create(os.Args[2])
+	outFile, err := os.Create(os.Args[2])
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	r := charmap.ISO8859_1.NewDecoder().Reader(f)
+	in := bufio.NewReaderSize(f, 1<<20)
+
+	out := bufio.NewWriterSize(outFile, 1<<20)
+
+	r := charmap.ISO8859_1.NewDecoder().Reader(in)
 
 	buf := make([]byte, 1048576)
 
 	io.CopyBuffer(out, r, buf)
 
-	out.Close()
+	out.Flush()
+	outFile.Close()
 	f.Close()
 }
