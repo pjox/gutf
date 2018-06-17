@@ -80,4 +80,4 @@ UTF-32LE(IgnoreBOM)
 
 ## Todo
 
-Ok ok, maybe there is an unholy reason why you would want to convert the encoding of a file into something different than UTF-8, I'll add support later so that you can do this forbidden conversions.
+Ok ok, maybe there is an unholy reason why you would want to convert the encoding of a file into something different than UTF-8, I'll add support later so that you can do these forbidden conversions.
