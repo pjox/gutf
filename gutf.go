@@ -31,8 +31,8 @@ func StripSpaces(s string) string {
 
 func main() {
 
-	if len(os.Args) != 4 {
-		fmt.Fprintf(os.Stderr, "usage:\n\t%s [input] [encoding] [output]\n", os.Args[0])
+	if len(os.Args) != 5 {
+		fmt.Fprintf(os.Stderr, "usage:\n\t%s [input] [encoding] [output] [encoding]\n", os.Args[0])
 		os.Exit(1)
 	}
 
@@ -81,9 +81,7 @@ func main() {
 		m[s] = v
 	}
 
-	fmt.Println(count)
-
-	input, iencoding, output := os.Args[1], os.Args[2], os.Args[3]
+	input, iencoding, output, oencoding := os.Args[1], os.Args[2], os.Args[3], os.Args[4]
 
 	f, err := os.Open(input)
 
@@ -103,9 +101,11 @@ func main() {
 
 	decode := m[iencoding].NewDecoder().Reader(in)
 
+	encode := m[oencoding].NewEncoder().Writer(out)
+
 	buf := make([]byte, 1<<20)
 
-	io.CopyBuffer(out, decode, buf)
+	io.CopyBuffer(encode, decode, buf)
 
 	out.Flush()
 	outFile.Close()

@@ -1,15 +1,15 @@
 # Gutf
 
-Gutf is a terminal tool that converts files encoding to UTF-8.
+Gutf is a terminal tool that converts file encodings.
 
-This tool will only convert files into UTF-8 because, let's be honest, using something different than UTF-8 today is just unacceptable.
+This tool will convert files from and into a variety of encodings (see the supported encodings section), but please try to use it responsibly and always convert you files into UTF-8. If by any event you need to convert your text files into something different than UTF-8, don't worry, Guft will help you do those unholy convertions.
 
 Different from iconv, gutf works with huge files as it does not load the whole file into memory.
 
 ## Usage
 
 ```text
-gutf [input] [encoding] [output]
+gutf [input] [encoding] [output] [encoding]
 ```
 
 ## Supported Encodings
@@ -77,7 +77,3 @@ UTF-32BE(UseBOM)
 UTF-32BE(IgnoreBOM)
 UTF-32LE(IgnoreBOM)
 ```
-
-## Todo
-
-Ok ok, maybe there is an unholy reason why you would want to convert the encoding of a file into something different than UTF-8, I'll add support later so that you can do these forbidden conversions.
